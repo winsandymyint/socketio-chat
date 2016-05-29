@@ -8,7 +8,10 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-  console.info('A user is trying to connection ... ');
+  socket.on('Message', function(msg){
+    console.log("Message"+ msg);  
+    io.emit('Message ' + msg);
+  });
   socket.on('disconnect', function(){ console.log('user disconnected')});
 });
 
